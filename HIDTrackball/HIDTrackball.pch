@@ -1,0 +1,14 @@
+//
+//  HIDTrackball.hpp
+//  HIDTrackball
+//
+//  Created by Michael Deitcher on 1/10/16.
+//  Copyright © 2016 StudioSplotch. All rights reserved.
+//
+
+#ifndef HIDTrackball_hpp
+#define HIDTrackball_hpp
+
+#include <stdio.h>
+
+#endif /* HIDTrackball_hpp */
