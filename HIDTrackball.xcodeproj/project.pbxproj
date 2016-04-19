@@ -6,9 +6,18 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		20D444161C42AF550057EC5B /* hidapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D444141C42AF550057EC5B /* hidapi.c */; };
+		20D444191C42B9CC0057EC5B /* HIDTrackball.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20D444171C42B9CC0057EC5B /* HIDTrackball.cpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		20D4440B1C42AF110057EC5B /* HIDTrackball.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HIDTrackball.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D4440E1C42AF110057EC5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20D444141C42AF550057EC5B /* hidapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hidapi.c; sourceTree = "<group>"; };
+		20D444151C42AF550057EC5B /* hidapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hidapi.h; sourceTree = "<group>"; };
+		20D444171C42B9CC0057EC5B /* HIDTrackball.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HIDTrackball.cpp; sourceTree = "<group>"; };
+		20D444181C42B9CC0057EC5B /* HIDTrackball.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HIDTrackball.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +50,11 @@
 		20D4440D1C42AF110057EC5B /* HIDTrackball */ = {
 			isa = PBXGroup;
 			children = (
+				20D444141C42AF550057EC5B /* hidapi.c */,
+				20D444151C42AF550057EC5B /* hidapi.h */,
 				20D4440E1C42AF110057EC5B /* Info.plist */,
+				20D444171C42B9CC0057EC5B /* HIDTrackball.cpp */,
+				20D444181C42B9CC0057EC5B /* HIDTrackball.pch */,
 			);
 			path = HIDTrackball;
 			sourceTree = "<group>";
@@ -112,6 +125,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20D444191C42B9CC0057EC5B /* HIDTrackball.cpp in Sources */,
+				20D444161C42AF550057EC5B /* hidapi.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,9 +215,11 @@
 		20D444121C42AF110057EC5B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = HIDTrackball/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = StudioSplotch.HIDTrackball;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -213,9 +230,11 @@
 		20D444131C42AF110057EC5B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = HIDTrackball/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = StudioSplotch.HIDTrackball;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

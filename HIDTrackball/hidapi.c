@@ -100,13 +100,6 @@ struct input_report {
     struct input_report *next;
 };
 
-struct mouse_report
-{
-    uint8_t buttons;
-    int32_t x;
-    int32_t y;
-};
-
 struct hid_device_ {
     IOHIDDeviceRef device_handle;
     int blocking;
@@ -955,6 +948,38 @@ int HID_API_EXPORT hid_read(hid_device *dev, unsigned char *data, size_t length)
     return hid_read_timeout(dev, data, length, (dev->blocking)? -1: 0);
 }
 
+int HID_API_EXPORT hid_read_mouse_update(hid_device *dev, struct mouse_report *mouse_report)
+{
+    int bytes_read = -1;
+    
+    /* Lock the access to the report list. */
+    pthread_mutex_lock(&dev->mutex);
+    
+    mouse_report->x = dev->mouse_report.x;
+    mouse_report->y = dev->mouse_report.y;
+    dev->mouse_report.x = 0;
+    dev->mouse_report.y = 0;
+    
+    /* Return if the device has been disconnected. */
+    if (dev->disconnected) {
+        bytes_read = -1;
+        goto ret;
+    }
+    
+    if (dev->shutdown_thread) {
+        /* This means the device has been closed (or there
+         has been an error. An error code of -1 should
+         be returned. */
+        bytes_read = -1;
+        goto ret;
+    }
+        
+ret:
+    /* Unlock */
+    pthread_mutex_unlock(&dev->mutex);
+    return bytes_read;
+}
+
 int HID_API_EXPORT hid_set_nonblocking(hid_device *dev, int nonblock)
 {
     /* All Nonblocking operation is handled by the library. */
@@ -1093,7 +1118,6 @@ static int get_transport(IOHIDDeviceRef device, wchar_t *buf, size_t len)
 {
     return get_string_property(device, CFSTR(kIOHIDTransportKey), buf, len);
 }
-
 
 int main(void)
 {

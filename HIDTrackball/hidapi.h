@@ -78,6 +78,12 @@ extern "C" {
         struct hid_device_info *next;
     };
     
+    struct mouse_report
+    {
+        int buttons;
+        int x;
+        int y;
+    };
     
     /** @brief Initialize the HIDAPI library.
      
@@ -243,6 +249,8 @@ extern "C" {
      */
     int  HID_API_EXPORT HID_API_CALL hid_read(hid_device *device, unsigned char *data, size_t length);
     
+    int HID_API_EXPORT HID_API_CALL hid_read_mouse_update(hid_device *dev, struct mouse_report *mouse_report);
+    
     /** @brief Set the device handle to be non-blocking.
      
      In non-blocking mode calls to hid_read() will return
@@ -379,7 +387,8 @@ extern "C" {
      
      @returns
      This function returns a string containing the last error
-     which occurred or NULL if none has occurred.
+     which occurred or NULL if none h
+     as occurred.
      */
     HID_API_EXPORT const wchar_t* HID_API_CALL hid_error(hid_device *device);
     
